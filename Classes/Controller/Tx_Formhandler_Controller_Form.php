@@ -264,13 +264,6 @@ class Tx_Formhandler_Controller_Form extends Tx_Formhandler_AbstractController {
 			$this->loadSettingsForStep($this->currentStep);
 		}
 
-		//run init interceptors
-		$this->addFormhandlerClass($this->settings['initInterceptors.'], 'Interceptor_Filtreatment');
-		$output = $this->runClasses($this->settings['initInterceptors.']);
-		if (strlen($output) > 0) {
-			return $output;
-		}
-
 		//Search for completely unchecked checkbox arrays before validation to make sure that no values from session are taken.
 		if ($this->currentStep > $this->lastStep) {
 			$currentGP = $this->utilityFuncs->getMergedGP();
@@ -353,6 +346,12 @@ class Tx_Formhandler_Controller_Form extends Tx_Formhandler_AbstractController {
 			$this->loadSettingsForStep($this->currentStep);
 			$this->parseConditions();
 
+			//run init interceptors
+			$this->addFormhandlerClass($this->settings['initInterceptors.'], 'Interceptor_Filtreatment');
+			$output = $this->runClasses($this->settings['initInterceptors.']);
+			if (strlen($output) > 0) {
+				return $output;
+			}
 			//read template file
 			$this->templateFile = $this->utilityFuncs->readTemplateFile($this->templateFile, $this->settings);
 			$this->globals->setTemplateCode($this->templateFile);
@@ -470,6 +469,13 @@ class Tx_Formhandler_Controller_Form extends Tx_Formhandler_AbstractController {
 		//load settings from last step again because an error occurred
 		$this->loadSettingsForStep($this->currentStep);
 		$this->globals->getSession()->set('settings', $this->settings);
+
+		//run init interceptors
+		$this->addFormhandlerClass($this->settings['initInterceptors.'], 'Interceptor_Filtreatment');
+		$output = $this->runClasses($this->settings['initInterceptors.']);
+		if (strlen($output) > 0) {
+			return $output;
+		}
 
 		//read template file
 		$this->templateFile = $this->utilityFuncs->readTemplateFile($this->templateFile, $this->settings);
