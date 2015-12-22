@@ -1086,7 +1086,8 @@ class Tx_Formhandler_UtilityFuncs {
 	 * @return array The merged settings
 	 */
 	public function mergeConfiguration($settings, $newSettings) {
-		return \TYPO3\CMS\Core\Utility\GeneralUtility::array_merge_recursive_overrule($settings, $newSettings);
+		\TYPO3\CMS\Core\Utility\ArrayUtility::mergeRecursiveWithOverrule($settings, $newSettings);
+		return $settings;
 	}
 
 	public function parseResourceFiles($settings, $key) {
