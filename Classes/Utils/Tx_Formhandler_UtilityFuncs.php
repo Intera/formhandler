@@ -51,7 +51,7 @@ class Tx_Formhandler_UtilityFuncs {
 	public function getDocumentRoot() {
 		return PATH_site;
 	}
-	
+
 	public function getMergedGP() {
 		$gp = array_merge(\TYPO3\CMS\Core\Utility\GeneralUtility::_GET(), \TYPO3\CMS\Core\Utility\GeneralUtility::_POST());
 		$prefix = $this->globals->getFormValuesPrefix();
@@ -286,7 +286,7 @@ class Tx_Formhandler_UtilityFuncs {
 	 * Redirects to a specified page or URL.
 	 *
 	 * @param mixed $redirect Page id or URL to redirect to
-	 * @param boolean $correctRedirectUrl replace &amp; with & in URL 
+	 * @param boolean $correctRedirectUrl replace &amp; with & in URL
 	 * @return void
 	 */
 	public function doRedirect($redirect, $correctRedirectUrl, $additionalParams = array(), $headerStatusCode = '') {
@@ -327,7 +327,7 @@ class Tx_Formhandler_UtilityFuncs {
 				print '{' . json_encode('redirect') . ':' . json_encode(\TYPO3\CMS\Core\Utility\GeneralUtility::locationHeaderUrl($url)) . '}';
 				exit;
 			}
-			
+
 		}
 	}
 
@@ -850,7 +850,7 @@ class Tx_Formhandler_UtilityFuncs {
 		$GLOBALS['TSFE']->settingLanguage();
 		$GLOBALS['TSFE']->newCObj();
 	}
-	
+
 	/**
 	 * Returns a debug message according to given key
 	 *
@@ -870,15 +870,15 @@ class Tx_Formhandler_UtilityFuncs {
 	public function getExceptionMessage($key) {
 		return trim($GLOBALS['TSFE']->sL('LLL:EXT:formhandler/Resources/Language/locallang_exceptions.xml:' . $key));
 	}
-	
+
 	/**
 	 * Performs search and replace settings defined in TypoScript.
-	 * 
+	 *
 	 * Example:
-	 * 
+	 *
 	 * <code>
 	 * plugin.Tx_Formhandler.settings.files.search = ä,ö,ü
-	 * plugin.Tx_Formhandler.settings.files.replace = ae,oe,ue 
+	 * plugin.Tx_Formhandler.settings.files.replace = ae,oe,ue
 	 * </code>
 	 *
 	 * @param string The file name
@@ -934,9 +934,9 @@ class Tx_Formhandler_UtilityFuncs {
 
 	/**
 	 * Convert a shorthand byte value from a PHP configuration directive to an integer value
-	 * 
+	 *
 	 * Copied from http://www.php.net/manual/de/faq.using.php#78405
-	 * 
+	 *
 	 * @param	string	$value
 	 * @return	int
 	 */
@@ -991,9 +991,9 @@ class Tx_Formhandler_UtilityFuncs {
 
 	/**
 	 * Copy of tslib_content::getGlobal for use in Formhandler.
-	 * 
+	 *
 	 * Changed to be able to return an array and not only scalar values.
-	 * 
+	 *
 	 * @param string Global var key, eg. "HTTP_GET_VAR" or "HTTP_GET_VARS|id" to get the GET parameter "id" back.
 	 * @param array Alternative array than $GLOBAL to get variables from.
 	 * @return mixed Whatever value. If none, then blank string.
@@ -1081,8 +1081,8 @@ class Tx_Formhandler_UtilityFuncs {
 	/**
 	 * Merges 2 configuration arrays
 	 *
-	 * @param array The base settings
-	 * @param array The settings overriding the base settings.
+	 * @param array $settings The base settings
+	 * @param array $newSettings The settings overriding the base settings.
 	 * @return array The merged settings
 	 */
 	public function mergeConfiguration($settings, $newSettings) {
